@@ -44,6 +44,7 @@ This project features a real-time digital clock, alarm management system, sound 
 |          08:00 AM  - Class Time                  |
 +--------------------------------------------------+
 ```
+<img width="983" height="766" alt="image" src="https://github.com/user-attachments/assets/ad659800-8300-4c7a-97da-ae3aa048aea4" />
 
 ---
 
