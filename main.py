@@ -216,7 +216,7 @@ class DigitalClockApp:
         self._build_ui()
         self._tick()
 
-    # ── Window ───────────────────────────────────────────────────────
+    #  Window 
     def _setup_window(self):
         self.root.title("Digital Clock & Alarm")
         self.root.resizable(False, False)
@@ -226,7 +226,7 @@ class DigitalClockApp:
         sh = self.root.winfo_screenheight()
         self.root.geometry(f"{W}x{H}+{(sw-W)//2}+{(sh-H)//2}")
 
-    # ── Fonts ─────────────────────────────────────────────────────────
+    #  Fonts 
     def _build_fonts(self):
         mono = "Courier New"
         sans = "Segoe UI" if sys.platform == "win32" else "Helvetica"
@@ -242,7 +242,7 @@ class DigitalClockApp:
         self.f_tiny  = tkfont.Font(family=sans, size=10, weight="bold")
         self.f_ring  = tkfont.Font(family=sans, size=13, weight="bold")
 
-    # ── Master layout ─────────────────────────────────────────────────
+    #  Master layout 
     def _build_ui(self):
         self.left = tk.Frame(self.root, bg=C["bg"], width=460)
         self.left.pack(side="left", fill="both")
@@ -258,7 +258,7 @@ class DigitalClockApp:
         self._build_clock_panel()
         self._build_alarm_panel()
 
-    # ── Clock panel ───────────────────────────────────────────────────
+    #  Clock panel 
     def _build_clock_panel(self):
         p = self.left
 
@@ -276,7 +276,7 @@ class DigitalClockApp:
 
         tk.Frame(p, height=2, width=380, bg=C["violet"]).pack()
 
-        # ── Main time row ─────────────────────────────────────────
+        #  Main time row 
         row = tk.Frame(p, bg=C["bg"])
         row.pack(pady=(10, 0))
 
@@ -299,17 +299,17 @@ class DigitalClockApp:
                                  bg=C["bg"], fg=C["violet"], width=3)
         self.lbl_ampm.pack(side="left", padx=(8, 0), anchor="s", pady=(0, 2))
 
-        # ── Controls ──────────────────────────────────────────────
+        #  Controls 
         ctrl = tk.Frame(p, bg=C["bg"])
         ctrl.pack(pady=(12, 0))
         self._btn(ctrl, "⏸  Pause",  C["cyan"],  self._pause ).pack(side="left", padx=6)
         self._btn(ctrl, "▶  Resume", C["green"], self._resume).pack(side="left", padx=6)
 
-        # ── Sound test button ─────────────────────────────────────
+        #  Sound test button 
         self._btn(p, "🔊  Test Sound", C["amber"],
                   self._test_sound).pack(pady=(8, 0))
 
-        # ── Ringing banner (packed only when alarm fires) ─────────
+        #  Ringing banner (packed only when alarm fires) 
         self.ring_frame = tk.Frame(p, bg=C["red_dim"], pady=4)
 
         tk.Label(self.ring_frame, text="🔔  ALARM RINGING",
@@ -328,7 +328,7 @@ class DigitalClockApp:
         self._btn(rb, "⏹  Stop Alarm",
                   C["red"],   self._stop_alarm).pack(side="left", padx=8)
 
-    # ── Alarm panel ───────────────────────────────────────────────────
+    #  Alarm panel 
     def _build_alarm_panel(self):
         p = self.right
 
@@ -399,7 +399,7 @@ class DigitalClockApp:
 
         self._refresh_list()
 
-    # ── Alarm list ────────────────────────────────────────────────────
+    #  Alarm list 
     def _refresh_list(self):
         for w in self.list_frame.winfo_children():
             w.destroy()
@@ -450,7 +450,7 @@ class DigitalClockApp:
                   command=lambda a=alarm: self._delete(a)
                   ).pack(side="left")
 
-    # ── Alarm actions ─────────────────────────────────────────────────
+    #  Alarm actions 
     def _add_alarm(self):
         try:
             h = int(self.spin_h.get())
@@ -547,7 +547,7 @@ class DigitalClockApp:
             _play_wav_bytes(wav)
         threading.Thread(target=_play, daemon=True).start()
 
-    # ── Flash ─────────────────────────────────────────────────────────
+    #  Flash 
     def _flash(self):
         if not self._flashing:
             return
@@ -557,11 +557,11 @@ class DigitalClockApp:
         self._flash_phase += 1
         self.root.after(450, self._flash)
 
-    # ── Clock controls ────────────────────────────────────────────────
+    #  Clock controls 
     def _pause(self):  self.running = False
     def _resume(self): self.running = True
 
-    # ── Tick ──────────────────────────────────────────────────────────
+    #  Tick 
     def _tick(self):
         if self.running:
             p = get_time_parts()
@@ -584,7 +584,7 @@ class DigitalClockApp:
 
         self.root.after(1000, self._tick)
 
-    # ── Button factory ────────────────────────────────────────────────
+    #  Button factory 
     def _btn(self, parent, text, color, cmd):
         return tk.Button(
             parent, text=text, font=self.f_btn,
