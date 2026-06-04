@@ -194,7 +194,7 @@ This project helps beginners learn:
 
 # 👨‍💻 Author
 
-## Abdur Rahman
+## **Abdur Rahman**
 
 - 🎓 Computer & Communication Engineering Student
 - 💻 Passionate about Technology
